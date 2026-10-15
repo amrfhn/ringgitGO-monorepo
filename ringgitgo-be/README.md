@@ -36,6 +36,22 @@ Expected response: `{"status":"ok"}`.
 uv run python -m pytest
 ```
 
+pytest and HTTPX are included in the default development dependency group.
+Tests live in `tests/` and use FastAPI's `TestClient` without starting a server.
+
+Live HTTP tests use the shared Playwright suite in the frontend directory:
+
+```bash
+cd ../ringgitgo-fe
+npm ci
+npm run test:e2e -- --project=backend
+```
+
+Playwright starts both services on dedicated ports (3100 and 8100) and stops
+them after the run. Backend-only tests do not need browser binaries.
+See the [frontend testing guide](../ringgitgo-fe/README.md#testing) for setup
+and browser test commands.
+
 ## Production
 
 ```bash
